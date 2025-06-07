@@ -26,8 +26,9 @@ duration = 1  # Em beats
 def extract_ndvi_from_csv(csv_path):
     df = pd.read_csv(csv_path)
     ndvi_values = df['NDVI'].to_numpy()
-    ndvi_savgol_result = savgol_filter(ndvi_values, 5, 2, deriv=1) 
-    return ndvi_savgol_result
+    return ndvi_values
+    # ndvi_savgol_result = savgol_filter(ndvi_values, 5, 2, deriv=1) 
+    # return ndvi_savgol_result
 
 # Adiciona uma escala C maior
 # ndvi_values = extract_ndvi_from_csv("C:/Users/eduar/Documents/dev/py/ndvi2midi/data/NDVI_Tijuca_v2.csv")
