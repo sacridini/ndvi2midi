@@ -26,7 +26,7 @@ def extract_ndvi_from_csv(csv_path):
     return ndvi_values
 
 # Adiciona uma escala C maior
-ndvi_values = extract_ndvi_from_csv("/Users/eduardolacerda/Downloads/ndvi_sorriso_2020_2023_ponto1.csv")
+ndvi_values = extract_ndvi_from_csv("C:/Users/eduar/Documents/dev/py/ndvi2midi/data/NDVI_Tijuca_v2.csv")
 
 def ndvi_to_major_chord(ndvi_value):
     """
@@ -55,7 +55,7 @@ def ndvi_to_major_chord(ndvi_value):
     
 for ndvi in ndvi_values:
     chord = ndvi_to_major_chord(ndvi)
-    # print(f"NDVI {ndvi} -> Chord MIDI notes: {chord}")
+    print(f"NDVI {ndvi} -> Chord MIDI notes: {chord}")
     # Adiciona o acorde ao MIDI
     for note in chord:
         midi.addNote(track, channel, note, time, duration, volume)
@@ -67,7 +67,7 @@ for i, ndvi_value in enumerate(ndvi_values):
         midi.addNote(track, channel, note, time + i, duration, volume)
         
 # Salva o arquivo MIDI atualizado
-with open("minha_musica_com_acordes.mid", "wb") as output_file:
+with open("minha_musica_com_acordes_tijuca.mid", "wb") as output_file:
     midi.writeFile(output_file)
     
 # Exemplo de uso para apenas uma nota baseada no NDVI:
