@@ -2,6 +2,9 @@ import random
 import numpy as np
 import pandas as pd
 from midiutil import MIDIFile
+from scipy.signal import savgol_filter
+
+# savgol_result = savgol_filter(counts_lossyear, 5, 2, deriv=1) 
 
 # a0 = 21
 # c8 = 108
@@ -23,10 +26,12 @@ duration = 1  # Em beats
 def extract_ndvi_from_csv(csv_path):
     df = pd.read_csv(csv_path)
     ndvi_values = df['NDVI'].to_numpy()
-    return ndvi_values
+    ndvi_savgol_result = savgol_filter(ndvi_values, 5, 2, deriv=1) 
+    return ndvi_savgol_result
 
 # Adiciona uma escala C maior
-ndvi_values = extract_ndvi_from_csv("C:/Users/eduar/Documents/dev/py/ndvi2midi/data/NDVI_Tijuca_v2.csv")
+# ndvi_values = extract_ndvi_from_csv("C:/Users/eduar/Documents/dev/py/ndvi2midi/data/NDVI_Tijuca_v2.csv")
+ndvi_values = extract_ndvi_from_csv("/Users/eduardolacerda/code/ndvi2midi/data/NDVI_Tijuca_v2.csv")
 
 def ndvi_to_major_chord(ndvi_value):
     """
@@ -67,7 +72,7 @@ for i, ndvi_value in enumerate(ndvi_values):
         midi.addNote(track, channel, note, time + i, duration, volume)
         
 # Salva o arquivo MIDI atualizado
-with open("minha_musica_com_acordes_tijuca.mid", "wb") as output_file:
+with open("/Users/eduardolacerda/code/ndvi2midi/midi_files/minha_musica_com_acordes_tijuca_savgol.mid", "wb") as output_file:
     midi.writeFile(output_file)
     
 # Exemplo de uso para apenas uma nota baseada no NDVI:
