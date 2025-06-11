@@ -68,7 +68,7 @@ def create_midi(ndvi_values, midi_name = "Minha Música", number_of_tracks = 1, 
 
 if __name__ == "__main__":
     # Extracting NDVI values from CSV with Savgol filter
-    ndvi_values = extract_ndvi_from_csv("/Users/eduardolacerda/code/ndvi2midi/data/NDVI_Tijuca_v2.csv")
+    ndvi_values = extract_ndvi_from_csv_savgol("/Users/eduardolacerda/code/ndvi2midi/data/NDVI_Tijuca_v2.csv")
     # Creating MIDI file with the extracted NDVI values
     create_midi(ndvi_values, 
                 midi_name="Minha Música Tijuca", 
