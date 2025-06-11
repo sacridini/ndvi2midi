@@ -25,8 +25,6 @@ def extract_ndvi_from_csv(csv_path):
     df = pd.read_csv(csv_path)
     ndvi_values = df['NDVI'].to_numpy()
     return ndvi_values
-    # ndvi_savgol_result = savgol_filter(ndvi_values, 5, 2, deriv=1) 
-    # return ndvi_savgol_result
 
 def extract_ndvi_from_csv_savgol(csv_path):
     df = pd.read_csv(csv_path)
