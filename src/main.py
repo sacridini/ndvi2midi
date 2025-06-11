@@ -54,19 +54,11 @@ def create_midi(ndvi_values, midi_name = "Minha Música", number_of_tracks = 1, 
     volume = 100
     duration = 1  # Em beats
     
-    for ndvi in ndvi_values:
-        chord = ndvi_to_major_chord(ndvi)
-        print(f"NDVI {ndvi} -> Chord MIDI notes: {chord}")
-        
-    # Add chords to the MIDI file
-    for note in chord:
-        midi.addNote(track, channel, note, time, duration, volume)
-    time += duration
-    
     # Add chords based on NDVI values
     for i, ndvi_value in enumerate(ndvi_values):
         chord = ndvi_to_major_chord(ndvi_value)
         
+    # Add chords to the MIDI file        
     for note in chord:
         midi.addNote(track, channel, note, time + i, duration, volume)
             
