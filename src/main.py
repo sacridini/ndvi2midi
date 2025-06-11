@@ -39,7 +39,7 @@ def ndvi_to_major_chord(ndvi_value):
     else:
         return list(major_chord)
     
-def create_midi(midi_name = "Minha Música", number_of_tracks = 1, tempo = 120, output_file_path = "output.mid"):
+def create_midi(ndvi_values, midi_name = "Minha Música", number_of_tracks = 1, tempo = 120, output_file_path = "output.mid"):
 
     # Creates a new MIDI file with X number of track
     midi = MIDIFile(number_of_tracks)
@@ -78,7 +78,8 @@ if __name__ == "__main__":
     # Extracting NDVI values from CSV with Savgol filter
     ndvi_values = extract_ndvi_from_csv("/Users/eduardolacerda/code/ndvi2midi/data/NDVI_Tijuca_v2.csv")
     # Creating MIDI file with the extracted NDVI values
-    create_midi(midi_name="Minha Música Tijuca", 
+    create_midi(ndvi_values, 
+                midi_name="Minha Música Tijuca", 
                 number_of_tracks=1,
                 tempo=120, 
                 output_file_path="/Users/eduardolacerda/code/ndvi2midi/midi_files/minha_musica_com_acordes_tijuca_savgol_v2.mid")
